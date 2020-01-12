@@ -3,7 +3,7 @@
 #include "vendor/unity.h"
 #include "../src/linked_list.h"
 
-struct list_item **list = NULL;
+ListItem **list = NULL;
 
 void setUp(void)
 {

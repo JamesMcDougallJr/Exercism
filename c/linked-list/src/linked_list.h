@@ -2,31 +2,44 @@
 #define LINKED_LIST_H
 
 #include <stdbool.h>
-
+#define TRUE 1
+#define FALSE 0
 typedef int ll_data_t;
 
-struct list_item;
+typedef struct ListNode
+{
+  ll_data_t data;
+  ListNode *next;
+  ListNode *prev;
+} ListNode;
+
+// A structure to allow me to know the tail and the size of the linked list
+// Most implementations on't have the head which isn't as useful to me
+typedef struct LinkedList {
+  int size;
+  ListNode *head, *tail;
+} LinkedList;
 
 // constructs a new list of items
-struct list_item **new_list(void);
+ListNode **new_list(void);
 
 // checks if the list is empty
-bool is_list_empty(struct list_item **list);
+bool is_list_empty(LinkedList *list);
 
 // inserts item at back of list
-bool push(struct list_item **list, ll_data_t item_data);
+bool push(LinkedList *list, ll_data_t item_data);
 
 // removes item from back of list
-ll_data_t pop(struct list_item **list);
+ll_data_t pop(LinkedList *list);
 
 // removes item from front of list
-ll_data_t shift(struct list_item **list);
+ll_data_t shift(LinkedList *list);
 
 // inserts item at front of list
-bool unshift(struct list_item **list, ll_data_t item_data);
+bool prepend(LinkedList *list, ll_data_t item_data);
 
 // destroy the entire list
 // list will be a dangling pointer after calling this method on it
-void delete_list(struct list_item **list);
+void delete_list(LinkedList *list);
 
 #endif
