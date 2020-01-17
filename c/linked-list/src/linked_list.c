@@ -106,6 +106,7 @@ void delete_list(LinkedList *list) {
     if(current) {
       next = current->next;
       free(current);
+      current = next;
     } else
     {
       printf("Why is current not valid: %p\tNext: %p\n", (void*) current, (void*) next);

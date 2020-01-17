@@ -22,7 +22,3 @@
 #   main "$@"
 #
 # *** PLEASE REMOVE THESE COMMENTS BEFORE SUBMITTING YOUR SOLUTION ***
-main() {
-  echo "Hello, World!"
-}
-main "$@"
