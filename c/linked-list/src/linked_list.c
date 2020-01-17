@@ -3,6 +3,21 @@
 #include <stdio.h>
 
 /**
+ * printList() print all elements in sequential order
+ */
+void printList(LinkedList * list) {
+  if(list) {
+    ListNode *head = list->head;
+    ListNode *current = head;
+    for(int i = 0; i < list->size; i++) {
+      printf("%d ->", current->data);
+      current = current->next;
+    }
+  }
+  printf("\n");
+}
+
+/**
  * new_list returns a pointer to an empty LinkedList structure
  */
 LinkedList *new_list(void) {
@@ -68,13 +83,12 @@ ll_data_t pop(LinkedList *list) {
  * Param list is a pointer to a LinkedList struct
  */
 ll_data_t shift(LinkedList *list) {
+  printList(list);
   ListNode *head_ptr = list->head;
   ll_data_t head_data = head_ptr->data;
   list->head = head_ptr->next;
-  printf("Head_ptr %p\n", (void*) head_ptr);
-  if(head_ptr) free(head_ptr);
-  else printf("head_ptr not valid to be free'd: %p\n", (void*) head_ptr);
-  list->size--;
+  free(head_ptr);
+  list->size  -= 1;
   return head_data;
 }
 
@@ -82,6 +96,7 @@ ll_data_t shift(LinkedList *list) {
  * Basically prepend
  */
 bool unshift(LinkedList *list, ll_data_t item_data) {
+  if(!list) return FALSE;
   ListNode *new_node = (ListNode *) malloc(sizeof(ListNode));
   if(new_node) {
     new_node->data = item_data;
