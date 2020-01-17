@@ -3,7 +3,7 @@
 #include "vendor/unity.h"
 #include "../src/linked_list.h"
 
-ListItem **list = NULL;
+LinkedList *list = NULL;
 
 void setUp(void)
 {
@@ -20,46 +20,49 @@ void tearDown(void)
 
 static void test_new_list(void)
 {
-   TEST_IGNORE();               // delete this line to run test
    TEST_ASSERT_NOT_NULL(list);
 }
 
 static void test_is_list_empty_when_empty(void)
 {
-   TEST_IGNORE();
+   printf("test_is_list_empty_when_empty begin\n");
    TEST_ASSERT_TRUE(is_list_empty(list));
    delete_list(list);
    list = NULL;                 // stop list from dangling
    TEST_ASSERT_TRUE(is_list_empty(list));
+   printf("test_is_list_empty_when_empty end\n");
 }
 
 static void test_is_list_empty_when_not_empty(void)
 {
-   TEST_IGNORE();
    // pre-populate list
+   printf("Is list empty when not empty begin\n");
    ll_data_t data = 12;
    push(list, data);
    TEST_ASSERT_FALSE(is_list_empty(list));
+   printf("Is list empty when not empty end\n");
 }
 
 static void test_push_with_invalid_list(void)
 {
-   TEST_IGNORE();
+   printf("test push with invalid list begin\n");
    ll_data_t data = 13;
    TEST_ASSERT_FALSE(push(NULL, data));
+   printf("test push with invalid list end\n");
 }
 
 static void test_push_with_valid_list(void)
 {
-   TEST_IGNORE();
+   printf("test push with valid list begin\n");
    for (size_t data = 14; data < 19; ++data) {
       TEST_ASSERT_TRUE(push(list, data));
    }
+   printf("test push with valid list end\n");
 }
 
 static void test_pop_returns_list_data(void)
 {
-   TEST_IGNORE();
+   printf("test_pop_returns_list_data begin\n");
    // pre-populate list
    for (size_t data = 11; data <= 15; ++data) {
       push(list, data);
@@ -67,26 +70,28 @@ static void test_pop_returns_list_data(void)
    for (size_t data = 15; data >= 11; --data) {
       TEST_ASSERT_EQUAL(data, pop(list));
    }
+   printf("test_pop_returns_list_data end\n");
 }
 
 static void test_unshift_with_invalid_list(void)
 {
-   TEST_IGNORE();
+   printf("test_unshift_with_invalid_list begin \n");
    ll_data_t data = 16;
    TEST_ASSERT_FALSE(unshift(NULL, data));
+   printf("test_unshift_with_invalid_list end \n");
 }
 
 static void test_unshift_with_valid_list(void)
 {
-   TEST_IGNORE();
+   printf("test_unshift_with_valid_list begin\n");
    for (size_t data = 14; data < 19; ++data) {
       TEST_ASSERT_TRUE(unshift(list, data));
    }
+   printf("test_unshift_with_valid_list end\n");
 }
 
 static void test_shift_returns_list_data(void)
 {
-   TEST_IGNORE();
    // pre-populate list
    for (size_t data = 12; data < 17; ++data) {
       push(list, data);

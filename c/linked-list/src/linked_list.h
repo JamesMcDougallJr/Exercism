@@ -9,8 +9,8 @@ typedef int ll_data_t;
 typedef struct ListNode
 {
   ll_data_t data;
-  ListNode *next;
-  ListNode *prev;
+  struct ListNode *next;
+  struct ListNode *prev;
 } ListNode;
 
 // A structure to allow me to know the tail and the size of the linked list
@@ -21,7 +21,7 @@ typedef struct LinkedList {
 } LinkedList;
 
 // constructs a new list of items
-ListNode **new_list(void);
+LinkedList *new_list(void);
 
 // checks if the list is empty
 bool is_list_empty(LinkedList *list);
@@ -36,7 +36,7 @@ ll_data_t pop(LinkedList *list);
 ll_data_t shift(LinkedList *list);
 
 // inserts item at front of list
-bool prepend(LinkedList *list, ll_data_t item_data);
+bool unshift(LinkedList *list, ll_data_t item_data);
 
 // destroy the entire list
 // list will be a dangling pointer after calling this method on it
