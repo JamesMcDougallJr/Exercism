@@ -56,7 +56,7 @@ static void test_push_with_valid_list(void)
    printf("test push with valid list begin\n");
    for (size_t data = 14; data < 19; ++data) {
       TEST_ASSERT_TRUE(push(list, data));
-   }
+   } 
    printf("test push with valid list end\n");
 }
 
