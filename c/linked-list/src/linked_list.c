@@ -100,7 +100,7 @@ bool unshift(LinkedList *list, ll_data_t item_data) {
  */
 void delete_list(LinkedList *list) {
   ListNode *current = list->head;
-  ListNode *next;
+  ListNode *next = 0;
   int i;
   for(i = 0; i < list->size; i++) {
     if(current) {
@@ -108,7 +108,7 @@ void delete_list(LinkedList *list) {
       free(current);
     } else
     {
-      printf("Why is current not valid: %p\n", (void*) current);
+      printf("Why is current not valid: %p\tNext: %p\n", (void*) current, (void*) next);
     }
   }
 }
