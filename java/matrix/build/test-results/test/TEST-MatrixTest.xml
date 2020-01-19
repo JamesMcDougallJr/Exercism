@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MatrixTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2020-01-19T02:27:16" hostname="starlord.solaris" time="0.043">
+  <properties/>
+  <testcase name="extractRowFromOneNumberMatrixTest" classname="MatrixTest" time="0.031"/>
+  <testcase name="extractRowFromDiffWidthsMatrixTest" classname="MatrixTest" time="0.0"/>
+  <testcase name="extractColumnFromNonSquareMatrixTest" classname="MatrixTest" time="0.003"/>
+  <testcase name="extractColumnFromDiffWidthsMatrixTest" classname="MatrixTest" time="0.001"/>
+  <testcase name="extractColumnMatrixTest" classname="MatrixTest" time="0.0"/>
+  <testcase name="extractRowFromMatrixTest" classname="MatrixTest" time="0.0"/>
+  <testcase name="extractColumnFromOneNumberMatrixTest" classname="MatrixTest" time="0.0"/>
+  <testcase name="extractRowFromNonSquareMatrixTest" classname="MatrixTest" time="0.0"/>
+  <system-out><![CDATA[1 
+1 2 
+10 20 
+1 2 3 4 
+5 6 7 8 
+9 8 7 6 
+89 1903 3 
+18 3 1 
+9 4 800 
+1 2 3 
+4 5 6 
+7 8 9 
+1 2 
+3 4 
+1 
+1 2 3 
+4 5 6 
+7 8 9 
+8 7 6 
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
