@@ -42,4 +42,6 @@ bool unshift(LinkedList *list, ll_data_t item_data);
 // list will be a dangling pointer after calling this method on it
 void delete_list(LinkedList *list);
 
+void printList(LinkedList *list);
+
 #endif

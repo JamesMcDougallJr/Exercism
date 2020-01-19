@@ -98,7 +98,9 @@ static void test_shift_returns_list_data(void)
    }
 
    for (size_t data = 12; data < 17; ++data) {
-      TEST_ASSERT_EQUAL(data, shift(list));
+      ll_data_t shift_result = shift(list);
+      printf("Result: %d\n", shift_result);
+      TEST_ASSERT_EQUAL(data, shift_result);
    }
 }
 

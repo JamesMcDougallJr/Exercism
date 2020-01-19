@@ -3,6 +3,21 @@
 #include <stdio.h>
 
 /**
+ * printList() print all elements in sequential order
+ */
+void printList(LinkedList * list) {
+  if(list) {
+    ListNode *head = list->head;
+    ListNode *current = head;
+    for(int i = 0; i < list->size; i++) {
+      printf("%d ->", current->data);
+      current = current->next;
+    }
+  }
+  printf("\n");
+}
+
+/**
  * new_list returns a pointer to an empty LinkedList structure
  */
 LinkedList *new_list(void) {
@@ -14,7 +29,6 @@ LinkedList *new_list(void) {
 // checks if the list is empty
 bool is_list_empty(LinkedList *list) {
   if(list) {
-    printf("Is list empty: %u\n", list->size);
     return list->size == 0;
   }
   return TRUE;
@@ -27,11 +41,12 @@ bool is_list_empty(LinkedList *list) {
  */
 bool push(LinkedList *list, ll_data_t item_data) {
   ListNode *new_tail = (ListNode*) malloc(sizeof(ListNode));
+
   if(!list) return FALSE;
   if (new_tail) {
-    new_tail->data = item_data; // initialize the nnew node
 
-    if (list->tail) // if the tail is not null, just append
+    new_tail->data = item_data; // initialize the new node
+    if (list->size) // if the tail is not null, just append
     {
       new_tail->prev = list->tail; // the new item's prev is the old tail
       list->tail->next = new_tail; // the old list's tail's next is the new node
@@ -68,13 +83,12 @@ ll_data_t pop(LinkedList *list) {
  * Param list is a pointer to a LinkedList struct
  */
 ll_data_t shift(LinkedList *list) {
+  printList(list);
   ListNode *head_ptr = list->head;
   ll_data_t head_data = head_ptr->data;
   list->head = head_ptr->next;
-  printf("Head_ptr %p\n", (void*) head_ptr);
-  if(head_ptr) free(head_ptr);
-  else printf("head_ptr not valid to be free'd: %p\n", (void*) head_ptr);
-  list->size--;
+  free(head_ptr);
+  list->size  -= 1;
   return head_data;
 }
 
@@ -82,6 +96,7 @@ ll_data_t shift(LinkedList *list) {
  * Basically prepend
  */
 bool unshift(LinkedList *list, ll_data_t item_data) {
+  if(!list) return FALSE;
   ListNode *new_node = (ListNode *) malloc(sizeof(ListNode));
   if(new_node) {
     new_node->data = item_data;
@@ -100,7 +115,7 @@ bool unshift(LinkedList *list, ll_data_t item_data) {
  */
 void delete_list(LinkedList *list) {
   ListNode *current = list->head;
-  ListNode *next;
+  ListNode *next = 0;
   int i;
   for(i = 0; i < list->size; i++) {
     if(current) {
@@ -109,7 +124,7 @@ void delete_list(LinkedList *list) {
       current = next;
     } else
     {
-      printf("Why is current not valid: %p\n", (void*) current);
+      printf("Why is current not valid: %p\tNext: %p\n", (void*) current, (void*) next);
     }
   }
 }
