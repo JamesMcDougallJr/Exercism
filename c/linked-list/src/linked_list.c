@@ -29,7 +29,6 @@ LinkedList *new_list(void) {
 // checks if the list is empty
 bool is_list_empty(LinkedList *list) {
   if(list) {
-    printf("Is list empty: %u\n", list->size);
     return list->size == 0;
   }
   return TRUE;
@@ -42,11 +41,12 @@ bool is_list_empty(LinkedList *list) {
  */
 bool push(LinkedList *list, ll_data_t item_data) {
   ListNode *new_tail = (ListNode*) malloc(sizeof(ListNode));
+
   if(!list) return FALSE;
   if (new_tail) {
-    new_tail->data = item_data; // initialize the nnew node
 
-    if (list->tail) // if the tail is not null, just append
+    new_tail->data = item_data; // initialize the new node
+    if (list->size) // if the tail is not null, just append
     {
       new_tail->prev = list->tail; // the new item's prev is the old tail
       list->tail->next = new_tail; // the old list's tail's next is the new node
