@@ -21,7 +21,6 @@ public class KnapsackTest {
         assertEquals(0, knapsack.maximumValue(100, items));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testOneItemTooHeavy() {
         ArrayList<Item> items = new ArrayList<>();
@@ -29,9 +28,10 @@ public class KnapsackTest {
         assertEquals(0, knapsack.maximumValue(10, items));
     }
 
-    @Ignore("Remove to run test")
+     
     @Test
     public void testFiveItemsCannotBeGreedyByWeight() {
+    	// if you pick the smallest weight each time, you will fail this test
         ArrayList<Item> items = new ArrayList<>();
         items.add(new Item(2, 5));
         items.add(new Item(2, 5));
@@ -41,9 +41,10 @@ public class KnapsackTest {
         assertEquals(21, knapsack.maximumValue(10, items));
     }
 
-    @Ignore("Remove to run test")
+     
     @Test
     public void testFiveItemsCannotBeGreedyByValue() {
+    	// if you pick the heighest value each time, you will fail this test
         ArrayList<Item> items = new ArrayList<>();
         items.add(new Item(2, 20));
         items.add(new Item(2, 20));
@@ -53,7 +54,7 @@ public class KnapsackTest {
         assertEquals(80, knapsack.maximumValue(10, items));
     }
 
-    @Ignore("Remove to run test")
+     
     @Test
     public void testExampleKnapsack() {
         ArrayList<Item> items = new ArrayList<>();
@@ -64,7 +65,7 @@ public class KnapsackTest {
         assertEquals(90, knapsack.maximumValue(10, items));
     }
 
-    @Ignore("Remove to run test")
+     
     @Test
     public void testEightItems() {
         ArrayList<Item> items = new ArrayList<>();
@@ -79,7 +80,7 @@ public class KnapsackTest {
         assertEquals(900, knapsack.maximumValue(104, items));
     }
 
-    @Ignore("Remove to run test")
+     
     @Test
     public void testFifteenItems() {
         ArrayList<Item> items = new ArrayList<>();

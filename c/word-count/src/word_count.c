@@ -3,64 +3,34 @@
 #include <stdio.h>
 #include <string.h>
 
+int count_word(word_count_word_t * words, char *word);
+
 /**
  * Loop over the input text. Create word_count_word_t structs as you go.
  * If you encounter a new word, look for it in the array. If its not there, 
  * we'll create a new one
  */
 int word_count(const char *input_text, word_count_word_t * words) {
-  int index = 0, str_begin_index=0, unique_words= 0;
-
-  printf("Input Text: %s\n", input_text);
+  int index = 0;
+  int beginning_of_word = 0;
+  int num_words = 0;
+  int word_length = 0;
+  int num_unique = 0;
   while(input_text[index] != '\0') {
-    printf("Character: %c\n", input_text[index]);
-    if ( input_text[index] == ' ' && index - str_begin_index < MAX_WORD_LENGTH) {
-      char substr[index - str_begin_index];
-      memcpy( substr, &input_text[str_begin_index], index - str_begin_index );
-      substr[index] = '\0';
-      printf("Substring : %s\n", substr);
-      if(count_word(substr, words, index-str_begin_index))
-      {
-        unique_words++;
-      }
-      str_begin_index = index + 1;
-    } else if(input_text[index] == ' ') // if the character was too long
-    {
-      // don't add this word, but still update the str_begin_index
-      str_begin_index = index + 1;
+    if(num_words > MAX_WORDS) return EXCESSIVE_NUMBER_OF_WORDS;
+    if(input_text[index] == ' ') {
+      word_length = index - beginning_of_word;
+      char substring[word_length];
+      strncpy(substring, &input_text[beginning_of_word], word_length);
+      substring[word_length] = '\0';
+      printf("Substring %s\n", substring);
+      num_unique += count_word(words, substring);
     }
-    index++;
   }
-  char substr[index - str_begin_index];
-  memcpy(substr, &input_text[str_begin_index], index - str_begin_index);
-  substr[index] = '\0';
-  printf("Substr: %s\n",substr);
-  if(count_word(substr, words, index-str_begin_index)) // if new word
-  {
-    unique_words++;
-  }
-  return unique_words;
+  return num_unique;
 }
 
-/**
- * If the given word exists in the array, add it. Otherwise, create
- * a new struct
- */
-int count_word(const char *word, word_count_word_t *words, int string_length) {
+int count_word(word_count_word_t *words, char *word) {
   int i;
-  for(i = 0; i < MAX_WORDS; i++) {
-    if(words[i].count == 0) // If we find the first null struct
-    {
-      // put the given word in a new struct
-      memcpy(&(words[i].text), word, string_length);
-      words[i].count = 1;
-      return TRUE;
-    } else if(strcmp(words[i].text, word) == 0)
-    {
-      // this word is already in my array, increment
-      words[i].count ++;
-      return FALSE;
-    }
-  }
-  return FALSE;
+  for(i = 0; i < )
 }
