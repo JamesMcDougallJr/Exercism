@@ -2,40 +2,59 @@ import java.util.*;
 import java.util.ArrayList;
 
 class Knapsack {
+	int maxWeight;
 
-  Knapsack() {
+	Knapsack() {
 
-  }
-  
-  int maximumValue(int weight, ArrayList<Item> items) {
+	}
 
-		if(items.size() < 1) return 0;
-	  Item[][] solution = new Item[items.size()][items.size()-1];
-	  for(int i = 0; i < solution.length; i++) {
-		  for(int j = 0; j < solution[i].length; j++) {
-				if(j > i) {
-					solution[i][j] = new Item(0,0);
-				} else if(i > 0) {
-					int newValue = items.get(i).getValue() + solution[i-1][j].getValue();
-					int newWeight = items.get(i).getWeight() + solution[i-1][j].getWeight();
-					solution[i][j] = new Item(newValue, newWeight);
+	int maximumValue(int weight, ArrayList<Item> items) {
+		this.maxWeight = weight;
+		if (items.size() < 1)
+			return 0;
+		Item[][] solution = new Item[items.size()][weight + 1];
+		for (int i = 0; i < solution.length; i++) {
+			for (int w = 0; w <= weight; w++) {
+				if (i == 0 && items.get(i).getWeight() < weight) {
+					solution[i][w] = items.get(i);
+				} else if (i == 0) {
+					solution[i][w] = new Item(0, 0);
 				} else {
-					solution[i][j] = items.get(i);
+					Item currentItem = items.get(i);
+					// the more general case
+					if (currentItem.getWeight() > w) {
+						solution[i][w] = solution[i - 1][w];
+					} else {
+						Item notSelected = solution[i - 1][w];
+						int currentItemWeight = currentItem.getWeight();
+						int currentItemValue = currentItem.getValue();
+						Item otherItem = solution[i - 1][w - currentItemWeight];
+						Item newItem = new Item(currentItemWeight + otherItem.getWeight(), currentItemValue + otherItem.getValue());
+						Item[] items2 = { notSelected, newItem };
+						solution[i][w] = getMaxValidItem(items2);
+					}
 				}
-		  }
-	  }
-	
-		int maximumVal = -1;
-		System.out.println("Max weight: " + weight);
-		for(int j = 0; j < solution[solution.length-1].length; j++) {
-			int itemVal = solution[solution.length-1][j].getValue();
-			int itemWeight = solution[solution.length-1][j].getWeight();
-			System.out.println("Value: " + solution[solution.length-1][j].getValue() + "\tWeight: " + solution[solution.length-1][j].getWeight());
-			if (itemWeight <= weight && itemVal > maximumVal) {
-				maximumVal = itemVal;
 			}
 		}
-		return maximumVal;
-  }
+		System.out.println("---------------Printing Matrix-------------");
+		for (
 
+				int i = 0; i < solution.length; i++) {
+			for (int j = 0; j < solution[i].length; j++) {
+				System.out.print("| (" + solution[i][j].getWeight() + "," + solution[i][j].getValue() + ") ");
+			}
+			System.out.println();
+		}
+		return solution[items.size() - 1][weight].getValue();
+	}
+
+	private Item getMaxValidItem(Item[] items) {
+		Item maxItem = new Item(0, 0);
+		for (Item item : items) {
+			if (item.getValue() > maxItem.getValue()) {
+				maxItem = item;
+			}
+		}
+		return maxItem;
+	}
 }

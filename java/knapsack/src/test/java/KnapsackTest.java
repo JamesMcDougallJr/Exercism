@@ -28,7 +28,6 @@ public class KnapsackTest {
         assertEquals(0, knapsack.maximumValue(10, items));
     }
 
-     
     @Test
     public void testFiveItemsCannotBeGreedyByWeight() {
     	// if you pick the smallest weight each time, you will fail this test
@@ -54,7 +53,6 @@ public class KnapsackTest {
         assertEquals(80, knapsack.maximumValue(10, items));
     }
 
-     
     @Test
     public void testExampleKnapsack() {
         ArrayList<Item> items = new ArrayList<>();
@@ -65,7 +63,6 @@ public class KnapsackTest {
         assertEquals(90, knapsack.maximumValue(10, items));
     }
 
-     
     @Test
     public void testEightItems() {
         ArrayList<Item> items = new ArrayList<>();
@@ -80,7 +77,6 @@ public class KnapsackTest {
         assertEquals(900, knapsack.maximumValue(104, items));
     }
 
-     
     @Test
     public void testFifteenItems() {
         ArrayList<Item> items = new ArrayList<>();
